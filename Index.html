@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zona de Fresnel Calculator</title>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<link rel="stylesheet" href="styles.css">
+<style>
+    body {
+        background-color: #f8f9fa;
+    }
+    .container {
+        margin-top: 50px;
+    }
+</style>
+</head>
+<body>
+<div class="container">
+    <h1>Calculadora de Zona Fresnel </h1>
+    <div class="container-result">
+        <form id="fresnelForm">
+            <div class="form-group">
+                <label for="distance">Distancia entre Antenas (km):</label>
+                <input type="number" step="0.01" class="form-control" id="distance" required>
+            </div>
+            <div class="form-group">
+                <label for="frequency">Frecuencia (GHz):</label>
+                <input type="number" step="0.01" class="form-control" id="frequency" required>
+            </div>
+            <button type="submit" class="btn btn-success">Calcular</button>
+            <button type="reset" class="btn btn-secondary ml-2">Limpiar</button>
+        </form> 
+    </div>
+    <div class="mt-4">
+        <h3>Zona de Fresnel:</h3>
+        <div class="container-fresnelzone">
+            <p id="fresnelResult"></p>
+        </div>
+    </div>
+    
+</div>
+<div class="container">
+    <footer class="mt-5 pt-5 border-top">
+        <div class="row">
+            <div class="col-md-6">
+                <h5 class="pb-2">Desarrollado por</h5>
+                <p>Tadeo Pariani  -  https://github.com/TadeoPariani</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <p>&copy; 2023 Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+</div>
+
+<script>
+document.getElementById("fresnelForm").addEventListener("submit", function(event) {
+    event.preventDefault();
+
+    const frecuencia = parseFloat(document.getElementById("frequency").value);
+    const distancia = parseFloat(document.getElementById("distance").value);
+
+    if (frecuencia < 0 || distancia < 0) {
+        alert("Ingresa valores numéricos válidos.");
+        return;
+    }
+
+    let RaizResultado = Math.sqrt(distancia/frecuencia);
+    const fresnelZone = 8.656 * RaizResultado;
+    const fresnelResult = `El radio de la Zona de Fresnel es aproximadamente ${fresnelZone.toFixed(3)} metros.`;
+
+    document.getElementById("fresnelResult").textContent = fresnelResult;
+});
+</script>
+</body>
+</html>
+

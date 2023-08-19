@@ -1,0 +1,13 @@
+.container-result{
+    background-color: rgb(119, 168, 199);
+    margin: 20px;
+    padding: 15px;
+    border-radius: 20px;
+}
+
+.container-fresnelzone{
+    background-color: rgb(158, 206, 162);
+    margin: 20px;
+    padding: 15px;
+    border-radius: 20px;
+}
